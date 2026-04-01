@@ -12,6 +12,18 @@ export default async (db) => {
     .insert(schemas.users)
     .values(buildUser())
     .returning();
+  const [user3] = await db
+    .insert(schemas.users)
+    .values(buildUser())
+    .returning();
+  const [user4] = await db
+    .insert(schemas.users)
+    .values(buildUser())
+    .returning();
+  const [user5] = await db
+    .insert(schemas.users)
+    .values(buildUser())
+    .returning();
   const [course1] = await db
     .insert(schemas.courses)
     .values(buildCourse({ creatorId: user2.id }))
@@ -22,5 +34,5 @@ export default async (db) => {
     .returning();
   await db
     .insert(schemas.courseLessons)
-    .values(buildCourseLesson({ courseId: course2.id }));
+    .values(buildCourseLesson({ courseId: course1.id }));
 };

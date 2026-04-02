@@ -12,8 +12,8 @@ export default async function (fastify) {
       .users
       .findMany({
         orderBy: asc(schemas.users.id),
-        limit: perPage,
-        offset: (page - 1) * perPage,
+        // limit: perPage,
+        // offset: (page - 1) * perPage,
     });
 
     return users;
@@ -34,5 +34,24 @@ export default async function (fastify) {
 
     return reply.code(201)
       .send(user)
+  })
+
+  fastify.patch('/users/:id', async (request) => {
+    const [user] = await db.update(schemas.users)
+      .set(request.body)
+      .where(eq(schemas.users.id, request.params.id))
+      .returning()
+    fastify.assert(user, 404)
+
+    return user
+  })
+
+  fastify.delete('/users/:id', async (request, reply) => {
+    const [user] = await db.delete(schemas.users)
+      .where(eq(schemas.users.id, request.params.id))
+      .returning()
+    fastify.assert(user, 404)
+    // Обязательно вызывать send(), иначе обработка зависнет
+    return reply.code(204).send()
   })
 }

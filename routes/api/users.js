@@ -26,4 +26,13 @@ export default async function (fastify) {
     fastify.assert(user, 404)
     return user
   })
+
+  fastify.post('/users', async (request, reply) => {
+    const [user] = await db.insert(schemas.users)
+      .values(request.body)
+      .returning()
+
+    return reply.code(201)
+      .send(user)
+  })
 }

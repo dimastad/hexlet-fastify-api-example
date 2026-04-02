@@ -12,8 +12,8 @@ export default async function (fastify) {
       .users
       .findMany({
         orderBy: asc(schemas.users.id),
-        // limit: perPage,
-        // offset: (page - 1) * perPage,
+        limit: perPage,
+        offset: (page - 1) * perPage,
     });
 
     return users;

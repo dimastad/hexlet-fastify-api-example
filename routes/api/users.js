@@ -2,6 +2,7 @@ import { asc, eq } from "drizzle-orm";
 import * as schemas from "../../db/schema.js";
 
 export default async function (fastify) {
+  fastify.addHook('onRequest', fastify.authenticate)
   const db = fastify.db;
 
   fastify.get("/users", async function (request) {

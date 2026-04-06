@@ -2,8 +2,6 @@ import { eq } from "drizzle-orm";
 import * as schemas from "../db/schema.js";
 
 export default async function (fastify, opts) {
-  fastify.addHook('onRequest', fastify.authenticate)
-
   fastify.get("/", async function (request, reply) {
     return { root: true };
   });
@@ -32,18 +30,16 @@ export default async function (fastify, opts) {
   )
 
   fastify.post(
-    '/courses',
+    "/courses",
+    { onRequest: [fastify.authenticate] },
     async (request, reply) => {
-      const body = request.body
+      const body = request.body;
       // Данные пользователя извлеченные из jwt-токена
-      body.creatorId = request.user.id
+      body.creatorId = request.user.id;
 
-      const [course] = await db.insert(schemas.courses)
-        .values(body)
-        .returning()
+      const [course] = await db.insert(schemas.courses).values(body).returning();
 
-      return reply.code(201)
-        .send(course)
-    }
-  )
+      return reply.code(201).send(course);
+    },
+  );
 }

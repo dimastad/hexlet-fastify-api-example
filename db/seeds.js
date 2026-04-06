@@ -4,9 +4,10 @@ import { buildCourse, buildCourseLesson, buildUser } from "../lib/data.js";
  * @param {import("drizzle-orm/better-sqlite3").BetterSQLite3Database<typeof schemas>} db
  */
 export default async (db) => {
+  // Фиксированные учётные данные для ручного теста: test@example.com / secret
   const [user1] = await db
     .insert(schemas.users)
-    .values(buildUser())
+    .values(buildUser({ email: "test@example.com" }))
     .returning();
   const [user2] = await db
     .insert(schemas.users)

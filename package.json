@@ -11,6 +11,7 @@
     "@fastify/autoload": "^6.0.0",
     "@fastify/jwt": "^10.0.0",
     "@fastify/sensible": "^6.0.0",
+    "@stoplight/prism-cli": "^5.14.2",
     "abstract-logging": "^2.0.1",
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
@@ -119,6 +120,11 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
+    "@typespec/compiler": "^1.10.0",
+    "@typespec/http": "^1.10.0",
+    "@typespec/openapi": "^1.10.0",
+    "@typespec/openapi3": "^1.10.0",
+    "@typespec/rest": "^0.80.0",
     "c8": "^11.0.0",
     "drizzle-kit": "^0.31.10"
   },

@@ -43,7 +43,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "post": {
         "operationId": "users_create",
@@ -102,7 +107,12 @@
           "404": {
             "description": "The server cannot find the requested resource."
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "patch": {
         "operationId": "users_update",

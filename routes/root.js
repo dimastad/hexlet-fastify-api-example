@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import * as schemas from "../db/schema.js";
+import { schema } from "../schema.js"
 
 export default async function (fastify, opts) {
   fastify.get("/", async function (request, reply) {
@@ -12,7 +13,9 @@ export default async function (fastify, opts) {
 
   const { db } = fastify;
 
-  fastify.get("/users", async function (request, reply) {
+  fastify.get(
+    '/users',
+    async function (request, reply) {
     const users = await db.query.users.findMany();
 
     return users;

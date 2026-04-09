@@ -51,6 +51,7 @@ profile-*
 # vscode
 .vscode
 *code-workspace
+de-jq
 
 # clinic
 profile*

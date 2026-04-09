@@ -63,6 +63,7 @@ export default async function (fastify) {
     '/users/:id',
     {
       // Возвращает { params: ..., body: ... }
+      onRequest: [fastify.authenticate],
       schema: schema['/users/{id}'].PATCH.args.properties,
     },
     async (request) => {
